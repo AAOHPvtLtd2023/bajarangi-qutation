@@ -1,0 +1,186 @@
+.container {
+    /* position: relative; */
+    max-width: 550px;
+    width: 100%;
+    background: #FCEDDA;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .container header {
+    font-size: 1.2rem;
+    color: #000;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .container .form {
+    margin-top: 15px;
+  }
+  
+  .form .input-box1 {
+    width: 95%;
+    margin-top: 10px;
+  }
+  
+  .input-box1 label {
+    color: #000;
+  }
+  
+  .form :where(.input-box1 input, .select-box) {
+    position: relative;
+    height: 35px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    color: #808080;
+    margin-top: 5px;
+    border: 1px solid #EE4E34;
+    border-radius: 6px;
+    padding: 0 15px;
+    background: #FCEDDA;
+  }
+  
+  .input-box1 input:focus {
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .form .column {
+    display: flex;
+    column-gap: 15px;
+  }
+  
+  .form .gst-box {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+.gst-box label{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  
+  .form :where(.gst-option, .gst) {
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .form .gst {
+    column-gap: 5px;
+  }
+  
+  .gst input {
+    accent-color: #EE4E34;
+  }
+  
+  .form :where(.gst input, .gst label) {
+    cursor: pointer;
+  }
+  
+  .gst label {
+    color: #000;
+  }
+  
+  .address :where(input, .select-box) {
+    margin-top: 10px;
+  }
+  
+  .select-box select {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: #808080;
+    font-size: 1rem;
+    background: #FCEDDA;
+  }
+  
+  .form button {
+    height: 40px;
+    width: 100%;
+    color: #000;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #EE4E34;
+  }
+  
+  .form button:hover {
+    background: #EE3E34;
+  }
+
+  .form .input-box2 {
+    width: 100%;
+  }
+  .form :where(.input-box2 input, .select-box) {
+    position: relative;
+    height: 35px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    color: #808080;
+    margin-top: 5px;
+    border: 1px solid #EE4E34;
+    border-radius: 6px;
+    /* padding: 0 15px; */
+    background: #FCEDDA;
+  }
+
+  .form .input-box3 {
+    width: 50%;
+    display: grid;
+  }
+  .form :where(.input-box3 input, .select-box) {
+    position: relative;
+    height: 35px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    color: #808080;
+    margin-top: 5px;
+    border: 1px solid #EE4E34;
+    border-radius: 6px;
+    /* padding: 0 15px; */
+    background: #FCEDDA;
+  }
+
+  .form .input-box3_address {
+    width: 100%;
+  }
+
+  .input-box3_address .column{
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .input-box3_address .column input{
+    position: relative;
+    height: 35px;
+    width: 100%;
+    outline: none;
+    font-size: 1rem;
+    color: #808080;
+    margin-top: 5px;
+    border: 1px solid #EE4E34;
+    border-radius: 6px;
+    /* padding: 0 15px; */
+    background: #FCEDDA;
+  }
+  
+  .form .select-box1 .selector{
+    width: 100%;
+  }
+  .form .select-box1 .selector2{
+    width: 100%;
+  }
