@@ -11,7 +11,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const checkLogin = (username, password) => {
-    if (username === 'a' && password === '123') {
+    if (username === 'Bajarangi' && password === 'BI2014') {
       setLoggedIn(true);
     } else {
       alert('Invalid credentials. Please try again.');
