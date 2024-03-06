@@ -19,10 +19,10 @@ export const data = [
             'Power Consumption with Heater: 3 - 5 Units / hr.',
             'Oil Tank Capacity: 45 Liters.',
             'Heavy duty machinery spare parts',
-            'One Time Free Installation',
+            'Installation charges Extra',
             'Service & Warranty with 5 years ',
             ' One year warranty on motor ',
-            'Hydraulic Oil Extra'
+            'Hydraulic Oil Extra',
         ]
     },
 
@@ -46,7 +46,7 @@ export const data = [
             'Power Consumption with Heater: 3-5 Units/hr',
             'Oil Tank Capacity: 45 Liters. ',
             'Heavy duty machinery spare parts. ',
-            'One Time Free Installation , ',
+            'Installation charges Extra , ',
             'Service & Warranty with 5 years ',
             'One year warranty on motor ',
             'Hydraulic Oil Extra',
@@ -79,7 +79,7 @@ export const data = [
             'Oil Tank Capacity: 45 Liters. ',
             'Heavy duty machinery spare parts.',
             'We are not providing hydraulic Oil with Machine. ',
-            'One Time Free Installation ,',
+            'Installation charges Extra ,',
             'Service & Warranty with 5 years ',
             'One year warranty on motor ',
             'No packing charge',
@@ -108,7 +108,7 @@ export const data = [
             'Oil Tank Capacity: 45 Liters.',
             'Heavy duty machinery spare parts. ',
             'We are not providing hydraulic Oil with Machine',
-            'One Time Free Installation',
+            'Installation charges Extra',
             'Service & Warranty with 5 years ',
             'One year warranty on motor ',
             'Hydraulic Oil',
@@ -138,7 +138,7 @@ export const data = [
             'Installation charges will extra ',
             'Service & Warranty with 1years ',
             'No Packing Charge ',
-            'Transportation Charges Extra '
+            'Transportation Charges Extra ',
         ]
     },
     {
@@ -159,7 +159,7 @@ export const data = [
             'Heavy duty machinery spare parts. ',
             'Installation charges will extra ',
             'Service & Warranty with 1years ',
-            'Transportation Charges Extra '
+            'Transportation Charges Extra ',
         ]
     },
 
@@ -184,7 +184,7 @@ export const data = [
             'Transportation Will Be Extra To Your Place',
             'Air Compressor: 5hp (double cylinder&2stage) ',
             'Servo Stabilizer : 20kva',
-            'Punching machine : Offset Printing Machine 16 x 22 Two colour'
+            'Punching machine : Offset Printing Machine 16 x 22 Two colour',
         ]
     },
 
@@ -205,7 +205,7 @@ export const data = [
             'Including Storage of Bags &Raw Materials.',
             'Service &Warranty With 1year',
             'No Packing Charge',
-            'Transportation Will Be Extra To Your Place.'
+            'Transportation Will Be Extra To Your Place.',
         ]
     },
 
@@ -230,8 +230,383 @@ export const data = [
             'Area required for Machine: 10 x 10 Feet Area Excluding Storage of Bags & Raw Materials',
             'Service & Warranty with 1 year',
             'Non Packing charge',
-            'Transportation will be Extra to your place'
+            'Transportation will be Extra to your place',
         ]
 
     }
 ]
+
+
+
+// import React from 'react';
+// import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer';
+// import logo from './logo.jpeg';
+// import AlgerianFont from './Fonts/Algerian Regular.ttf';
+// import AlgerianFont1 from './Fonts/Verdante Sans.ttf';
+// import AlgerianFont2 from './Fonts/Arial Black.ttf';
+// import AlgerianFont3 from './Fonts/times new roman bold.ttf';
+
+// Font.register({
+//     family: 'Roboto',
+//     fonts: [
+//         { src: AlgerianFont, fontStyle: 'italic', fontWeight: 'bold' },
+//     ],
+// });
+
+
+// Font.register({
+//     family: 'Roboto1',
+//     fonts: [
+//         { src: AlgerianFont1, fontWeight: 'bold' },
+//     ],
+// });
+
+// Font.register({
+//     family: 'Roboto2',
+//     fonts: [
+//         { src: AlgerianFont2, fontWeight: 'bold' },
+//     ],
+// });
+
+// Font.register({
+//     family: 'Roboto3',
+//     fonts: [
+//         { src: AlgerianFont3, fontWeight: 'bold' },
+//     ],
+// });
+
+// const MyDocument = ({ customerName, customerPhone, customerAddress, Quote, sellerName, Date, productDetails, Quantity, GST, TOTAL, SUBTOTAL, Price, WordPrice, selectedGST }) => (
+
+//     <Document>
+//         <Page size={'A4'} style={styles.page}>
+//             <View style={styles.borderred} />
+//             <View style={styles.bordersky} />
+//             <View id='section' style={styles.section}>
+//                 <Text style={styles.Qtext}>QUOTATION</Text>
+//                 {/* Display logo */}
+//                 <Image id='logo' src={logo} style={styles.logo} />
+
+//                 {/* Upper left text */}
+//                 <View style={styles.upperleftText}>
+//                     <Text>Date:          {Date}</Text>
+//                     <Text>Quote No:      {Quote}</Text>
+//                     <Text>Sales person:  {sellerName}</Text>
+//                 </View>
+//                 {/* Additional text */}
+//                 <View style={styles.additionalText}>
+//                     <Text style={{
+//                         color: '#ba1103', fontSize: 26, fontWeight: 'bold', fontStyle: 'italic', fontFamily:'Roboto'
+//                     }}>Bajarangi Industries</Text>
+//                     <Text>GST IN NO: 21GDQPS3411A2ZV</Text>
+//                     <Text>Plot No- 502/1237, Ogalapada, Janla, Industrial Estate,</Text>
+//                     <Text>Bhubaneswar, Odisha 752054, India</Text>
+//                     <Text>Phone: +91 83289 77393</Text>
+//                     <Text>Email id: info@bajarangiindustries.com</Text>
+//                 </View>
+
+//                 <View style={styles.customerDetails}>
+//                     <Text>{customerName}</Text>
+//                     <Text>{customerAddress}</Text>
+//                     <Text>Phone: {customerPhone}</Text>
+//                 </View>
+
+//                 <Text style={{ fontSize: 11, top: 100 }}>Here I am Sending information of "<Text style={{ color: '#ba1103' }}>{productDetails.productName}</Text>"</Text>
+
+//                 <View style={styles.abc}>
+//                     {/* Table */}
+//                     <View id='table' style={styles.table}>
+//                         <View style={styles.tableRow}>
+//                             <Text style={styles.tableHeader0}>Sl No</Text>
+//                             <Text style={styles.tableHeader2}>HSN code</Text>
+//                             <Text style={styles.tableHeader3}>Description</Text>
+//                             <Text style={styles.tableHeader1}>Qty</Text>
+//                             <Text style={styles.tableHeader4}>Rate</Text>
+//                             <Text style={styles.tableHeader5}>Total</Text>
+//                         </View>
+//                         {/* Example row, you can map through your data to create multiple rows */}
+//                         <View style={styles.tableRow}>
+//                             <Text style={styles.tableCell0}>1</Text>
+//                             <Text style={styles.tableCell2}>{productDetails.hsncode}</Text>
+//                             <View style={styles.tableCell3}>
+//                                 <Text style={{ color: '#ba1103', fontWeight: 'bold' }}>{productDetails.productName}</Text>
+//                                 <Text style={{ color: 'blue', fontWeight: 'bold' }}>Model No:- {productDetails.modelNo}</Text>
+//                                 {productDetails.description.map((desc, index) => (
+//                                     <Text style={{ fontSize: 9, fontFamily:'Roboto2' }} key={index}>{desc}</Text>
+//                                 ))}
+//                             </View>
+//                             <Text style={styles.tableCell1}>SET {Quantity}</Text>
+//                             <Text style={styles.tableCell4}>{Price}</Text>
+//                             <Text style={styles.tableCell5}>{SUBTOTAL}</Text>
+
+//                         </View>
+//                     </View>
+
+//                     <View id='gst' style={styles.gst}>
+//                         <View style={{ display: 'flex', flexWrap: 'wrap', borderStyle: 'solid',  marginTop: '2vh', fontSize: 11, height: '2vh' }}>
+//                             <Text style={{ marginLeft: '1vw' }}>Rupees {WordPrice} only</Text>
+//                         </View>
+//                         {/* <View style={{ backgroundColor: 'transparent', }}></View> */}
+//                         <View style={{ borderLeftWidth:1}}>
+//                             <Text style={{ fontWeight: 'bold',borderBottomWidth:1, }}>SUBTOTAL - {SUBTOTAL}</Text>
+//                             {selectedGST == 'IGST' ? (<Text style={{borderBottomWidth:1,}}>IGST @18% - {GST}</Text>)
+//                                 : (<View>
+//                                     <Text style={{ fontWeight: 'bold',borderBottomWidth:1, }}>CGST @9% - {GST}</Text>
+//                                     <Text style={{ fontWeight: 'bold' ,borderBottomWidth:1,}}>SGST @9% - {GST}</Text>
+//                                 </View>)}
+
+//                             <Text style={{ fontWeight: 'bold' }}>GRAND TOTAL- {TOTAL}.00</Text>
+//                         </View>
+
+//                     </View>
+
+
+//                 </View>
+
+//                 <View style={styles.account}>
+//                     <Text>A/C No: 39997721554</Text>
+//                     <Text>SBI,Janpath branch</Text>
+//                     <Text>Bajarangi Industries </Text>
+//                     <Text>IFSC Code: SBIN0010238</Text>
+//                 </View>
+
+//                 <View id='terms' style={styles.terms}>
+//                     <Text style={{ fontSize: 12, fontWeight: 'bold', textDecoration:'underline',fontFamily:'Roboto2' }}>Terms & Conditions:</Text>
+//                     <Text>1.Above Rates are inclusive of Local Sales tax. Prices prevailing at the time of Delivery will be applicable.</Text>
+//                     <Text>2.50% advance and rest amount in time of delivery </Text>
+//                     <Text>3.delivery time 30 to 40 days after receiving date of advance </Text>
+//                     <Text>4.DD/Cheque/Pay Order should be drawn in favor of “Bajarangi Industries” payable at Bhubaneswar.
+//                         Delivery after Realization of Cheque.</Text>
+//                     <Text>5.This Quotation is valid upto 30 days from date of issue.</Text>
+//                 </View>
+//             </View>
+//         </Page>
+//     </Document>
+// );
+
+// const styles = StyleSheet.create({
+//     page: {
+//         flexDirection: 'row',
+//         backgroundColor: 'white',
+//         paddingTop: 10, // Top margin
+//         paddingBottom: 5, // Bottom margin
+//         paddingLeft: 10, // Left margin
+//         paddingRight: 10, // Right margin
+//     },
+//     section: {
+//         margin: 10,
+//         padding: 10,
+//         flexGrow: 1,
+//         position: 'relative', // Ensure relative positioning for child elements
+//     },
+//     borderred: {
+//         position: 'absolute',
+//         top: 30,
+//         left: 30,
+//         right: 180,
+//         height: 20, // Adjust the height of the border
+//         backgroundColor: '#ba1103'
+//     },
+//     bordersky: {
+//         position: 'absolute',
+//         top: 30,
+//         left: 380,
+//         right: 30,
+//         height: 20, // Adjust the height of the border
+//         backgroundColor: 'blue'
+//     },
+//     Qtext: {
+//         position: 'absolute',
+//         top: 30,
+//         right: 30,
+//         color: '#ba1103',
+//         fontSize: 24,
+//         fontWeight: 'bold',
+//         fontFamily:'Roboto1'
+//     },
+//     logo: {
+//         position: 'absolute',
+//         top: 50,
+//         left: 10,
+//         width: 70, // Adjust width of the logo
+//         height: 70, // Adjust height of the logo
+//     },
+//     upperleftText: {
+//         position: 'relative',
+//         top: 50, // Adjust this value to position it below the logo
+//         left: 370, // Adjust this value to position it next to the logo
+//         fontSize: 11,
+//         lineHeight: 1.3, // Adjust line height for better readability
+//     },
+//     additionalText: {
+//         position: 'absolute',
+//         top: 40, // Adjust this value to position it below the logo
+//         left: 70, // Adjust this value to position it next to the upper left text
+//         fontSize: 10,
+//         lineHeight: 1.3, // Adjust line height for better readability
+//     },
+//     abc: {
+//         display: 'flex',
+//         flexDirection: 'column',
+//         top: 110,
+
+//     },
+//     table: {
+//         position: 'relative',
+//         borderStyle: 'solid',
+//         borderWidth: 1,
+//         height: 370,
+//         overflow: 'hidden'
+//     },
+//     tableRow: {
+//         flexDirection: 'row',
+//         borderBottomWidth: 1,
+//         borderColor: '#bfbfbf',
+//     },
+//     tableHeader0: {
+//         width: '5%',
+//         borderRightWidth: 1,
+//         padding: 5,
+//         textAlign: 'center',
+//         fontWeight: 'bold',
+//         fontSize: 13,
+//         fontFamily:'Roboto3'
+//     },
+//     tableHeader1: {
+//         width: '10%',
+//         borderRightWidth: 1,
+//         padding: 5,
+//         textAlign: 'center',
+//         fontWeight: 'bold',
+//         fontSize: 13,
+//         fontFamily:'Roboto3'
+
+//     },
+//     tableHeader2: {
+//         width: '15%',
+//         borderRightWidth: 1,
+//         padding: 5,
+//         textAlign: 'center',
+//         fontWeight: 'bold',
+//         fontSize: 13,
+//         fontFamily:'Roboto3'
+
+//     },
+//     tableHeader3: {
+//         width: '50%',
+//         borderRightWidth: 1,
+//         padding: 5,
+//         textAlign: 'center',
+//         fontWeight: 'bold',
+//         fontSize: 13,
+//         fontFamily:'Roboto3'
+
+//     },
+//     tableHeader4: {
+//         width: '15%',
+//         borderRightWidth: 1,
+//         padding: 5,
+//         textAlign: 'center',
+//         fontWeight: 'bold',
+//         fontSize: 13,
+//         fontFamily:'Roboto3'
+//     },
+//     tableHeader5: {
+//         width: '15%',
+//         borderRightWidth: 1,
+//         padding: 5,
+//         textAlign: 'center',
+//         fontWeight: 'bold',
+//         fontSize: 13,
+//         fontFamily:'Roboto3'
+//     },
+//     tableCell0: {
+//         width: '5%',
+//         borderRightWidth: 1,
+//         padding: 5,
+//         textAlign: 'center',
+//         fontSize: 11,
+//         height: 370,
+//     },
+//     tableCell1: {
+//         width: '10%',
+//         borderRightWidth: 1,
+//         padding: 5,
+//         textAlign: 'center',
+//         fontSize: 11,
+//         height: 370,
+//         fontFamily:'Roboto3'
+//     },
+//     tableCell2: {
+//         width: '15%',
+//         borderRightWidth: 1,
+//         padding: 5,
+//         textAlign: 'center',
+//         fontSize: 11,
+//         height: 370,
+//     },
+//     tableCell3: {
+//         width: '50%',
+//         borderRightWidth: 1,
+//         padding: 5,
+//         textAlign: 'left',
+//         fontSize: 11,
+//         height: 370,
+//     },
+//     tableCell4: {
+//         width: '15%',
+//         borderRightWidth: 1,
+//         padding: 5,
+//         textAlign: 'center',
+//         fontSize: 11,
+//         height: 370,
+//     },
+//     tableCell5: {
+//         width: '15%',
+//         borderRightWidth: 1,
+//         padding: 5,
+//         textAlign: 'center',
+//         fontSize: 11,
+//         height: 370,
+//     },
+//     customerDetails: {
+//         border: 2,
+//         borderColor: 'grey',
+//         // borderWidth:'auto',
+//         left: 10,
+//         top: 95,
+//         fontSize: 10,
+//         fontFamily:'Roboto1'
+//     },
+//     terms: {
+//         position: 'absolute',
+//         bottom: 0, // Adjust this value to position it at the bottom of the page
+//         left: 10, // Adjust left positioning if needed
+//         fontSize: 10,
+//     },
+//     account: {
+//         position: 'absolute',
+//         bottom: 90,
+//         fontSize: 13,
+//         color: '#ba1103',
+//         left: 10,
+//         fontWeight: 'bold'
+//     },
+//     gst: {
+//         display: 'flex',
+//         fontSize: 11,
+//         justifyContent: 'space-between',
+//         flexDirection: 'row',
+//         // marginTop: '0.5vh',
+//         borderBottomWidth: 1,
+//         borderRightWidth: 1,
+//         borderLeftWidth: 1,
+//         overflow:'hidden',
+//         fontFamily:'Roboto3'
+//     },
+//     protestRevolutionRegular: {
+//         fontFamily: 'Protest Revolution',
+//         fontStyle: 'normal',
+//     },
+// });
+
+// export default MyDocument;
