@@ -88,10 +88,10 @@ const MyDocument = ({ customerName, customerPhone, customerAddress, Quote, selle
                             <Text style={styles.tableCell0}>1</Text>
                             <Text style={styles.tableCell2}>{productDetails.hsncode}</Text>
                             <View style={styles.tableCell3}>
-                                <Text style={{ color: '#ba1103', fontWeight: 'bold', fontFamily: 'Roboto1' }}>{productDetails.productName}</Text>
-                                <Text style={{ color: 'blue', fontWeight: 'bold', }}>Model No:- {productDetails.modelNo}</Text>
+                                <Text style={{ color: 'blue', fontWeight: 'heavy', fontFamily:'Roboto1'}}>Model No:- {productDetails.modelNo}</Text>
+                                <Text style={{ color: '#ba1103', fontWeight: 'demibold', fontFamily: 'Roboto1' }}>{productDetails.productName}</Text>
                                 {productDetails.description.map((desc, index) => (
-                                    <Text style={{ fontSize: 8, fontFamily: 'Roboto2' }} key={index}>→ {desc}</Text>
+                                    <Text style={{ fontSize: 8, fontFamily: 'Roboto2' }} key={index}>• {desc}</Text>
                                 ))}
                             </View>
                             <Text style={styles.tableCell1}>SET {Quantity}</Text>
@@ -102,7 +102,7 @@ const MyDocument = ({ customerName, customerPhone, customerAddress, Quote, selle
                     </View>
 
                     <View id='gst' style={styles.gst}>
-                        <View style={{ display: 'flex', flexWrap: 'wrap', borderStyle: 'solid', marginTop: '2vh', fontSize: 11, width: '100%' }}>
+                        <View style={{ display: 'flex', flexWrap: 'wrap', borderStyle: 'solid', marginTop: '0.5vh', fontSize: 11, width: '100%' }}>
                             <Text style={{ marginLeft: '1vw', display: 'flex', flexWrap: 'wrap', }}>Rupees {WordPrice} only</Text>
                         </View>
                         {/* <View style={{ backgroundColor: 'transparent', }}></View> */}
