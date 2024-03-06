@@ -1,5 +1,5 @@
 import React from 'react';
-import { Document, Page, Text, View, StyleSheet, Image, Font,  } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet, Image, Font, } from '@react-pdf/renderer';
 import logo from './logo.jpeg';
 import AlgerianFont from './Fonts/Algerian Regular.ttf';
 import AlgerianFont1 from './Fonts/Verdante Sans.ttf';
@@ -48,14 +48,14 @@ const MyDocument = ({ customerName, customerPhone, customerAddress, Quote, selle
 
                 {/* Upper left text */}
                 <View style={styles.upperleftText}>
-                    <Text style={{fontFamily:'Roboto2'}}>Date:          {Date}</Text>
+                    <Text style={{ fontFamily: 'Roboto2' }}>Date:          {Date}</Text>
                     <Text>Quote No:      {Quote}</Text>
                     <Text>Sales person:  {sellerName}</Text>
                 </View>
                 {/* Additional text */}
                 <View style={styles.additionalText}>
                     <Text style={{
-                        color: '#ba1103', fontSize: 26, fontWeight: 'bold', fontStyle: 'italic', fontFamily:'Roboto'
+                        color: '#ba1103', fontSize: 24, fontWeight: 'bold', fontStyle: 'italic', fontFamily: 'Roboto'
                     }}>Bajarangi Industries</Text>
                     <Text>GST IN NO: 21GDQPS3411A2ZV</Text>
                     <Text>Plot No- 502/1237, Ogalapada, Janla, Industrial Estate,</Text>
@@ -88,10 +88,10 @@ const MyDocument = ({ customerName, customerPhone, customerAddress, Quote, selle
                             <Text style={styles.tableCell0}>1</Text>
                             <Text style={styles.tableCell2}>{productDetails.hsncode}</Text>
                             <View style={styles.tableCell3}>
-                                <Text style={{ color: '#ba1103', fontWeight: 'bold', fontFamily:'Roboto1' }}>{productDetails.productName}</Text>
-                                <Text style={{ color: 'blue', fontWeight: 'bold',}}>Model No:- {productDetails.modelNo}</Text>
+                                <Text style={{ color: '#ba1103', fontWeight: 'bold', fontFamily: 'Roboto1' }}>{productDetails.productName}</Text>
+                                <Text style={{ color: 'blue', fontWeight: 'bold', }}>Model No:- {productDetails.modelNo}</Text>
                                 {productDetails.description.map((desc, index) => (
-                                    <Text style={{ fontSize: 9, fontFamily:'Roboto2' }} key={index}>→ {desc}</Text>
+                                    <Text style={{ fontSize: 8, fontFamily: 'Roboto2' }} key={index}>→ {desc}</Text>
                                 ))}
                             </View>
                             <Text style={styles.tableCell1}>SET {Quantity}</Text>
@@ -102,19 +102,35 @@ const MyDocument = ({ customerName, customerPhone, customerAddress, Quote, selle
                     </View>
 
                     <View id='gst' style={styles.gst}>
-                        <View style={{ display: 'flex', flexWrap: 'wrap', borderStyle: 'solid',  marginTop: '2vh', fontSize: 11, width:'100%'}}>
-                            <Text style={{ marginLeft: '1vw',display: 'flex', flexWrap: 'wrap',}}>Rupees {WordPrice} only</Text>
+                        <View style={{ display: 'flex', flexWrap: 'wrap', borderStyle: 'solid', marginTop: '2vh', fontSize: 11, width: '100%' }}>
+                            <Text style={{ marginLeft: '1vw', display: 'flex', flexWrap: 'wrap', }}>Rupees {WordPrice} only</Text>
                         </View>
                         {/* <View style={{ backgroundColor: 'transparent', }}></View> */}
-                        <View style={{ borderLeftWidth:1,width:'40%'}}>
-                            <Text style={{ fontWeight: 'bold',borderBottomWidth:1}}>SUBTOTAL - {SUBTOTAL}</Text>
-                            {selectedGST === 'IGST' ? (<Text style={{borderBottomWidth:1,}}>IGST @18% - {GST}</Text>)
+                        <View style={{ borderLeftWidth: 1, width: '40%' }}>
+                            <View style={{ fontWeight: 'bold', borderBottomWidth: 1, width: '100%', display: 'flex', flexDirection: 'row' }}>
+                                <Text style={{ borderRightWidth: 1, width: '60%' }}>SUBTOTAL</Text>
+                                <Text>{SUBTOTAL}</Text>
+                            </View>
+                            {selectedGST === 'IGST' ? (
+                                <View style={{ fontWeight: 'bold', borderBottomWidth: 1, width: '100%', display: 'flex', flexDirection: 'row' }}>
+                                    <Text style={{ borderRightWidth: 1, width: '60%' }}>IGST @18%</Text>
+                                    <Text>{GST}</Text>
+                                </View>
+                            )
                                 : (<View>
-                                    <Text style={{ fontWeight: 'bold',borderBottomWidth:1, }}>CGST @9% - {GST}</Text>
-                                    <Text style={{ fontWeight: 'bold' ,borderBottomWidth:1,}}>SGST @9% - {GST}</Text>
+                                    <View style={{ fontWeight: 'bold', borderBottomWidth: 1, width: '100%', display: 'flex', flexDirection: 'row' }}>
+                                        <Text style={{ borderRightWidth: 1, width: '60%' }}>CGST @9%</Text>
+                                        <Text>{GST}</Text>
+                                    </View>
+                                    <View style={{ fontWeight: 'bold', borderBottomWidth: 1, width: '100%', display: 'flex', flexDirection: 'row' }}>
+                                        <Text style={{ borderRightWidth: 1, width: '60%' }}>SGST @9%</Text>
+                                        <Text>{GST}</Text>
+                                    </View>
                                 </View>)}
-
-                            <Text style={{ fontWeight: 'bold' }}>GRAND TOTAL- {TOTAL}</Text>
+                            <View style={{ fontWeight: 'bold', borderBottomWidth: 1, width: '100%', display: 'flex', flexDirection: 'row' }}>
+                                <Text style={{ borderRightWidth: 1, width: '60%' }}>GRAND TOTAL</Text>
+                                <Text>{TOTAL}</Text>
+                            </View>
                         </View>
 
                     </View>
@@ -130,7 +146,7 @@ const MyDocument = ({ customerName, customerPhone, customerAddress, Quote, selle
                 </View>
 
                 <View id='terms' style={styles.terms}>
-                    <Text style={{ fontSize: 12, fontWeight: 'bold', textDecoration:'underline',fontFamily:'Roboto2' }}>Terms & Conditions:</Text>
+                    <Text style={{ fontSize: 12, fontWeight: 'bold', textDecoration: 'underline', fontFamily: 'Roboto2' }}>Terms & Conditions:</Text>
                     <Text>1.Above Rates are inclusive of Local Sales tax. Prices prevailing at the time of Delivery will be applicable.</Text>
                     <Text>2.50% advance and rest amount in time of delivery </Text>
                     <Text>3.delivery time 30 to 40 days after receiving date of advance </Text>
@@ -181,7 +197,7 @@ const styles = StyleSheet.create({
         color: '#ba1103',
         fontSize: 24,
         fontWeight: 'bold',
-        fontFamily:'Roboto1'
+        fontFamily: 'Roboto1'
     },
     logo: {
         position: 'absolute',
@@ -229,7 +245,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 13,
-        fontFamily:'Roboto3'
+        fontFamily: 'Roboto3'
     },
     tableHeader1: {
         width: '10%',
@@ -238,7 +254,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 13,
-        fontFamily:'Roboto3'
+        fontFamily: 'Roboto3'
 
     },
     tableHeader2: {
@@ -248,7 +264,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 13,
-        fontFamily:'Roboto3'
+        fontFamily: 'Roboto3'
 
     },
     tableHeader3: {
@@ -258,7 +274,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 13,
-        fontFamily:'Roboto3'
+        fontFamily: 'Roboto3'
 
     },
     tableHeader4: {
@@ -268,7 +284,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 13,
-        fontFamily:'Roboto3'
+        fontFamily: 'Roboto3'
     },
     tableHeader5: {
         width: '15%',
@@ -277,7 +293,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         fontSize: 13,
-        fontFamily:'Roboto3'
+        fontFamily: 'Roboto3'
     },
     tableCell0: {
         width: '5%',
@@ -294,7 +310,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 11,
         height: 370,
-        fontFamily:'Roboto3'
+        fontFamily: 'Roboto3'
     },
     tableCell2: {
         width: '15%',
@@ -319,7 +335,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 11,
         height: 370,
-        fontFamily:'Roboto3'
+        fontFamily: 'Roboto3'
     },
     tableCell5: {
         width: '15%',
@@ -328,7 +344,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 11,
         height: 370,
-        fontFamily:'Roboto3'
+        fontFamily: 'Roboto3'
     },
     customerDetails: {
         border: 2,
@@ -337,7 +353,7 @@ const styles = StyleSheet.create({
         left: 10,
         top: 95,
         fontSize: 10,
-        fontFamily:'Roboto1'
+        fontFamily: 'Roboto1'
     },
     terms: {
         position: 'absolute',
@@ -352,7 +368,7 @@ const styles = StyleSheet.create({
         color: '#ba1103',
         left: 10,
         fontWeight: 'bold',
-        fontFamily:'Roboto1'
+        fontFamily: 'Roboto1'
     },
     gst: {
         display: 'flex',
@@ -363,8 +379,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderRightWidth: 1,
         borderLeftWidth: 1,
-        overflow:'hidden',
-        fontFamily:'Roboto3'
+        overflow: 'hidden',
+        fontFamily: 'Roboto3'
     },
     protestRevolutionRegular: {
         fontFamily: 'Protest Revolution',

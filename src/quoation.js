@@ -63,7 +63,7 @@ function Quoationpage() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (fullname == null || phone == null || address == null || productName == null || Price == null || qty == null || selectedGst == "") {
+        if (fullname == null || phone === null || address === null || productName === null || Price === null || qty === null || selectedGst === "") {
             setError(true);
             return;
         }
@@ -83,11 +83,11 @@ function Quoationpage() {
         const total = ((subTotal * 18) / 100) + subTotal;
         setSubTotal(subTotal);
         setTotal(total);
-        if (selectedGst == 'SGST') {
+        if (selectedGst === 'SGST') {
             const sgst = ((subTotal * 9) / 100);
             setgst(sgst);
 
-        } else if (selectedGst == 'IGST') {
+        } else if (selectedGst === 'IGST') {
             const igst = (subTotal * 18) / 100;
             setgst(igst);
         }
@@ -237,7 +237,7 @@ function Quoationpage() {
                                     Date={date}
                                     Quote={quote}
                                     sellerName={sellerName}
-                                    WordPrice={convertToWords(Total).toUpperCase()}
+                                    WordPrice={convertToWords(Total).charAt(0).toUpperCase()+convertToWords(Total).slice(1)}
                                 />
                             </PDFViewer>
                             <PDFDownloadLink onClick={hanleDownload} document={<MyDocument customerName={fullname}
@@ -253,7 +253,7 @@ function Quoationpage() {
                                 Date={date}
                                 Quote={quote}
                                 sellerName={sellerName}
-                                WordPrice={convertToWords(Total).toUpperCase()}
+                                WordPrice={convertToWords(Total).charAt(0).toUpperCase()+convertToWords(Total).slice(1)}
                             />
                             } fileName="somename.pdf">
                                 {({ blob, url, loading, error }) =>
