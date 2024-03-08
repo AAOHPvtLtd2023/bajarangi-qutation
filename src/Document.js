@@ -1,6 +1,7 @@
 import React from 'react';
 import { Document, Page, Text, View, StyleSheet, Image, Font, } from '@react-pdf/renderer';
 import logo from './logo.jpeg';
+import stamp from './stamp.jpg';
 import AlgerianFont from './Fonts/Algerian Regular.ttf';
 import AlgerianFont1 from './Fonts/Verdante Sans.ttf';
 import AlgerianFont2 from './Fonts/Arial Black.ttf';
@@ -88,15 +89,15 @@ const MyDocument = ({ customerName, customerPhone, customerAddress, Quote, selle
                             <Text style={styles.tableCell0}>1</Text>
                             <Text style={styles.tableCell2}>{productDetails.hsncode}</Text>
                             <View style={styles.tableCell3}>
-                                <Text style={{ color: 'blue', fontWeight: 'heavy', fontFamily:'Roboto1'}}>Model No:- {productDetails.modelNo}</Text>
+                                <Text style={{ color: 'blue', fontWeight: 'heavy', fontFamily: 'Roboto1' }}>Model No:- {productDetails.modelNo}</Text>
                                 <Text style={{ color: '#ba1103', fontWeight: 'demibold', fontFamily: 'Roboto1' }}>{productDetails.productName}</Text>
                                 {productDetails.description.map((desc, index) => (
                                     <Text style={{ fontSize: 8, fontFamily: 'Roboto2' }} key={index}>• {desc}</Text>
                                 ))}
                             </View>
                             <Text style={styles.tableCell1}>SET {Quantity}</Text>
-                            <Text style={styles.tableCell4}>{Price}</Text>
-                            <Text style={styles.tableCell5}>{SUBTOTAL}</Text>
+                            <Text style={styles.tableCell4}>{Number(Price).toLocaleString('en-IN')}</Text>
+                            <Text style={styles.tableCell5}>{Number(SUBTOTAL).toLocaleString('en-IN')}</Text>
 
                         </View>
                     </View>
@@ -109,27 +110,27 @@ const MyDocument = ({ customerName, customerPhone, customerAddress, Quote, selle
                         <View style={{ borderLeftWidth: 1, width: '40%' }}>
                             <View style={{ fontWeight: 'bold', borderBottomWidth: 1, width: '100%', display: 'flex', flexDirection: 'row' }}>
                                 <Text style={{ borderRightWidth: 1, width: '60%' }}>SUBTOTAL</Text>
-                                <Text>{SUBTOTAL}</Text>
+                                <Text>{Number(SUBTOTAL).toLocaleString('en-IN')}</Text>
                             </View>
                             {selectedGST === 'IGST' ? (
                                 <View style={{ fontWeight: 'bold', borderBottomWidth: 1, width: '100%', display: 'flex', flexDirection: 'row' }}>
                                     <Text style={{ borderRightWidth: 1, width: '60%' }}>IGST @18%</Text>
-                                    <Text>{GST}</Text>
+                                    <Text>{Number(GST).toLocaleString('en-IN')}</Text>
                                 </View>
                             )
                                 : (<View>
                                     <View style={{ fontWeight: 'bold', borderBottomWidth: 1, width: '100%', display: 'flex', flexDirection: 'row' }}>
                                         <Text style={{ borderRightWidth: 1, width: '60%' }}>CGST @9%</Text>
-                                        <Text>{GST}</Text>
+                                        <Text>{Number(GST).toLocaleString('en-IN')}</Text>
                                     </View>
                                     <View style={{ fontWeight: 'bold', borderBottomWidth: 1, width: '100%', display: 'flex', flexDirection: 'row' }}>
                                         <Text style={{ borderRightWidth: 1, width: '60%' }}>SGST @9%</Text>
-                                        <Text>{GST}</Text>
+                                        <Text>{Number(GST).toLocaleString('en-IN')}</Text>
                                     </View>
                                 </View>)}
                             <View style={{ fontWeight: 'bold', borderBottomWidth: 1, width: '100%', display: 'flex', flexDirection: 'row' }}>
                                 <Text style={{ borderRightWidth: 1, width: '60%' }}>GRAND TOTAL</Text>
-                                <Text>{TOTAL}</Text>
+                                <Text>{Number(TOTAL).toLocaleString('en-IN')}</Text>
                             </View>
                         </View>
 
@@ -138,12 +139,15 @@ const MyDocument = ({ customerName, customerPhone, customerAddress, Quote, selle
 
                 </View>
 
+
                 <View style={styles.account}>
                     <Text>A/C No: 39997721554</Text>
                     <Text>SBI,Janpath branch</Text>
                     <Text>Bajarangi Industries </Text>
                     <Text>IFSC Code: SBIN0010238</Text>
                 </View>
+
+                <Image id='logo' src={stamp} style={styles.stamp} />
 
                 <View id='terms' style={styles.terms}>
                     <Text style={{ fontSize: 12, fontWeight: 'bold', textDecoration: 'underline', fontFamily: 'Roboto2' }}>Terms & Conditions:</Text>
@@ -370,6 +374,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontFamily: 'Roboto1'
     },
+
+    stamp: {
+        position: 'absolute',
+        bottom: '70',
+        right: '40',
+        height: '70',
+        width: '70'
+    },
+
     gst: {
         display: 'flex',
         fontSize: 11,

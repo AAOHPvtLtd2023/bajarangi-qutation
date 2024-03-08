@@ -20,6 +20,7 @@ function App() {
     // <Routes>
     <Router>
       <Routes>
+      {/* <Route exact path="/" element={<Quoationpage />} /> */}
         <Route exact path="/" element={<LoginPage setLoggedIn={checkLogin} />} />
         <Route path="/quotation" element={loggedIn ? (<Quoationpage />)
           : (<Navigate to='/' />)}>

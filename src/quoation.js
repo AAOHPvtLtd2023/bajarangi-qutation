@@ -40,7 +40,7 @@ function Quoationpage() {
     const [formSubmitted, setFormSubmitted] = useState(false);
 
     // Price
-    const [SubTotal, setSubTotal] = useState('');
+    const [SubTotal, setSubTotal] = useState(null);
     const [Total, setTotal] = useState('');
     const [gst, setgst] = useState('');
 
@@ -85,11 +85,11 @@ function Quoationpage() {
         setTotal(total);
         if (selectedGst === 'SGST') {
             const sgst = ((subTotal * 9) / 100);
-            setgst(sgst);
+            setgst(sgst.toString().replace(/,/g, ''));
 
         } else if (selectedGst === 'IGST') {
             const igst = (subTotal * 18) / 100;
-            setgst(igst);
+            setgst(igst.toString().replace(/,/g, ''));
         }
 
         const querySnapshot = await getDocs(query(collection(db, "Quotations")));
@@ -99,6 +99,17 @@ function Quoationpage() {
         const pNO = String(empCount + 1).padStart(4, "0");
         const empId = prefix + "-" + pNO;
         setQuote(empId);
+        
+        const sanitizedPrice = Price.replace(/,/g, '');
+        setPrice(sanitizedPrice);
+
+        const sanitizedSubTotal = subTotal.toString().replace(/,/g, '');
+        setSubTotal(sanitizedSubTotal);
+
+        const sanitizedTotal = total.toString().replace(/,/g, '');
+        setTotal(sanitizedTotal);
+
+
         setFormSubmitted(true);
 
     };
@@ -112,21 +123,21 @@ function Quoationpage() {
         });
     };
 
-    
-  const convertToWords = (number) => {
-    const words = numberToWords.toWords(number);
 
-    // Custom rules for Indian numbering system
-    const lakhs = Math.floor(number / 100000);
-    const remaining = number % 100000;
-    if (lakhs > 0 && remaining > 0) {
-      return numberToWords.toWords(lakhs) + ' lakh ' + numberToWords.toWords(remaining);
-    } else if (lakhs > 0) {
-      return numberToWords.toWords(lakhs) + ' lakh';
-    } else {
-      return words;
-    }
-  };
+    const convertToWords = (number) => {
+        const words = numberToWords.toWords(number);
+
+        // Custom rules for Indian numbering system
+        const lakhs = Math.floor(number / 100000);
+        const remaining = number % 100000;
+        if (lakhs > 0 && remaining > 0) {
+            return numberToWords.toWords(lakhs) + ' lakh ' + numberToWords.toWords(remaining);
+        } else if (lakhs > 0) {
+            return numberToWords.toWords(lakhs) + ' lakh';
+        } else {
+            return words;
+        }
+    };
 
     // Function to get details of selected product
     const getSelectedProductDetails = () => {
@@ -139,7 +150,7 @@ function Quoationpage() {
             <div style={{ display: 'flex', flexDirection: 'column', background: 'black', resize: 'cover', height: '180vh' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '5vh' }}>
                     <section class="container">
-                        <header style={{fontFamily: "Protest Revolution", fontWeight: '400', fontStyle: 'normal', color: '#ba1103', fontSize: 26 }}>Bajarangi Industries</header>
+                        <header style={{ fontFamily: "Protest Revolution", fontWeight: '400', fontStyle: 'normal', color: '#ba1103', fontSize: 26 }}>Bajarangi Industries</header>
                         <form class="form" onSubmit={handleSubmit}> {/* Add onSubmit event */}
                             <div class="input-box1">
                                 <label>Full Name</label>
@@ -237,7 +248,7 @@ function Quoationpage() {
                                     Date={date}
                                     Quote={quote}
                                     sellerName={sellerName}
-                                    WordPrice={convertToWords(Total).charAt(0).toUpperCase()+convertToWords(Total).slice(1)}
+                                    WordPrice={convertToWords(Total).charAt(0).toUpperCase() + convertToWords(Total).slice(1)}
                                 />
                             </PDFViewer>
                             <PDFDownloadLink onClick={hanleDownload} document={<MyDocument customerName={fullname}
@@ -253,7 +264,7 @@ function Quoationpage() {
                                 Date={date}
                                 Quote={quote}
                                 sellerName={sellerName}
-                                WordPrice={convertToWords(Total).charAt(0).toUpperCase()+convertToWords(Total).slice(1)}
+                                WordPrice={convertToWords(Total).charAt(0).toUpperCase() + convertToWords(Total).slice(1)}
                             />
                             } fileName="somename.pdf">
                                 {({ blob, url, loading, error }) =>
