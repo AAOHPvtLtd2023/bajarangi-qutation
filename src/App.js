@@ -20,7 +20,7 @@ function App() {
 
   // Function to handle login validation
   const checkLogin = (username, password) => {
-    if (username === 'a' && password === '123') {
+    if (username === 'Bajarangi' && password === 'BI2014') {
       setLoggedIn(true);
       localStorage.setItem('loggedIn', 'true');  // Persist login state in localStorage
     } else {
