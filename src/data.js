@@ -1,3 +1,19 @@
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "./firebase_config";
+
+export const fetchProducts = async () => {
+    let allProducts  = [];
+    const productsSnapshot = await getDocs(collection(db, `Products`));
+    productsSnapshot.forEach((doc) => {
+      const data = doc.data();
+      allProducts.push({
+        id: doc.id,
+        ...data,
+      });
+    });
+    return allProducts;
+  };
+
 export const data = [
     {
         id: '1',

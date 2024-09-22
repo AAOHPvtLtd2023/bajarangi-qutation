@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from "react";
 import './quoation.css'
-import { data } from "./data";
 import Select from 'react-select'
 import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 import MyDocument from './Document.js';
 import { addDoc, collection, getDocs, query } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { db } from './firebase_config.js';
 import numberToWords from 'number-to-words';
+import { pdf } from '@react-pdf/renderer';  // Add this line to import 'pdf'
+import { fetchProducts } from "./data";
+
 
 function Quoationpage() {
+    const storage = getStorage();
     // Customer
     const [phone, setphone] = useState(null);
     const [fullname, setfullname] = useState(null);
     const [address, setaddress] = useState(null);
 
-    const productOption = data.map((product) => ({
-        label: product.productName,
-        value: product.id
-    }));
+
 
     const seller = [
         { name: 'Biswajit sahoo' },
@@ -36,8 +37,10 @@ function Quoationpage() {
     const [Price, setPrice] = useState(null);
     const [qty, setQty] = useState(null);
     const [selectedGst, setSelectedGst] = useState("");
-
+    const [products, setProducts] = useState([]);
+    const [allproducts, setAllProducts] = useState([]);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [pdfUrl, setPdfUrl] = useState(null);
 
     // Price
     const [SubTotal, setSubTotal] = useState(null);
@@ -50,15 +53,29 @@ function Quoationpage() {
 
     const [error, setError] = useState(false);
 
+    useEffect(() => {
+        const fetchAllProducts = async () => {
+            const allProducts = await fetchProducts();
+            setAllProducts(allProducts);
+            const productOption = allProducts.map((product) => ({
+                label: product.productName,
+                value: product.id
+            }));
+            console.log(productOption);
+            setProducts(productOption);
+        };
 
+        fetchAllProducts();
+
+
+    }, [])
 
     useEffect(() => {
         if (productName) {
-            console.log(productName);
-            const selectedProduct = data.find(product => product.id === productName);
+            const selectedProduct = allproducts.find(product => product.id === productName);
             setPrice(selectedProduct.rate);
         }
-    }, [productName])
+    }, [productName, allproducts])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -99,7 +116,7 @@ function Quoationpage() {
         const pNO = String(empCount + 1).padStart(4, "0");
         const empId = prefix + "-" + pNO;
         setQuote(empId);
-        
+
         const sanitizedPrice = Price.replace(/,/g, '');
         setPrice(sanitizedPrice);
 
@@ -109,20 +126,77 @@ function Quoationpage() {
         const sanitizedTotal = total.toString().replace(/,/g, '');
         setTotal(sanitizedTotal);
 
-
         setFormSubmitted(true);
 
+        console.log(Number(Price).toLocaleString('en-IN'));
+
     };
 
-    const hanleDownload = async (e) => {
-        await addDoc(collection(db, "Quotations"), {
-            Name: fullname,
-            Address: address,
-            Phone: phone,
-            Date: date,
-        });
+    const handleDownload = async (e) => {
+        try {
+            // Prepare the WhatsApp message with a downloadable link
+            const message = `Hello, here is your quotation:\nQuotation Number: ${quote}\nTotal: ${Total}\nDownload your PDF here: ${pdfUrl}`;
+
+            // Format the phone number to remove any non-numeric characters
+            const formattedPhone = phone.replace(/[^\d]/g, '');
+
+            // Ensure the message is URL-encoded
+            const encodedMessage = encodeURIComponent(message);
+
+            // Construct the WhatsApp URL
+            const whatsappURL = `https://wa.me/+91${formattedPhone}?text=${encodedMessage}`;
+
+            // Open WhatsApp with the generated URL
+            window.open(whatsappURL, '_blank');
+        } catch (error) {
+            console.error("Error uploading document or opening WhatsApp: ", error);
+        }
     };
 
+
+    const handleleSave = async (e) => {
+        try {
+
+            // Generate the PDF as a Blob
+            const pdfBlob = await pdf(<MyDocument
+                customerName={fullname}
+                customerAddress={address}
+                customerPhone={phone}
+                productDetails={getSelectedProductDetails()}
+                Quantity={qty}
+                GST={gst}
+                SUBTOTAL={SubTotal}
+                TOTAL={Total}
+                Price={Price}
+                selectedGST={selectedGst}
+                Date={date}
+                Quote={quote}
+                sellerName={sellerName}
+                WordPrice={convertToWords(Total).charAt(0).toUpperCase() + convertToWords(Total).slice(1)}
+            />).toBlob();
+
+            // Upload the PDF to Firebase Storage
+            const storageRef = ref(storage, `Quotations/${quote}.pdf`);
+            await uploadBytes(storageRef, pdfBlob);
+
+            // Get the downloadable URL for the PDF
+            const downloadURL = await getDownloadURL(storageRef);
+            setPdfUrl(downloadURL);
+
+            // Save the quotation in Firestore
+            await addDoc(collection(db, "Quotations"), {
+                Name: fullname,
+                Address: address,
+                Phone: phone,
+                Date: date,
+                downloadURL: downloadURL,
+                product: productName,
+                quote:quote
+            });
+        } catch (error) {
+            console.error("Error uploading document or opening WhatsApp: ", error);
+        }
+    };
 
     const convertToWords = (number) => {
         const words = numberToWords.toWords(number);
@@ -141,13 +215,14 @@ function Quoationpage() {
 
     // Function to get details of selected product
     const getSelectedProductDetails = () => {
-        const selectedProduct = data.find(product => product.id === productName);
+        const selectedProduct = allproducts.find(product => product.id === productName);
         return selectedProduct ? selectedProduct : null;
     };
 
     return (
         <>
-            <div style={{ display: 'flex', flexDirection: 'column', background: 'black', resize: 'cover', height: '180vh' }}>
+
+            <div style={{ display: 'flex', flexDirection: 'column', background: '#171a1d', resize: 'cover', height: '180vh' }}>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '5vh' }}>
                     <section class="container">
                         <header style={{ fontFamily: "Protest Revolution", fontWeight: '400', fontStyle: 'normal', color: '#ba1103', fontSize: 26 }}>Bajarangi Industries</header>
@@ -174,9 +249,9 @@ function Quoationpage() {
                                 <label style={{ display: 'flex', justifyContent: 'center', fontSize: 20 }}>Select The product</label>
                                 <Select
                                     className="selector"
-                                    options={productOption}
+                                    options={products}
                                     name="product"
-                                    value={productOption.find((o) => o.value === productName)}
+                                    value={products.find((o) => o.value === productName)}
                                     onChange={(e) => { setProduct(e.value) }}
                                 />
 
@@ -251,7 +326,8 @@ function Quoationpage() {
                                     WordPrice={convertToWords(Total).charAt(0).toUpperCase() + convertToWords(Total).slice(1)}
                                 />
                             </PDFViewer>
-                            <PDFDownloadLink onClick={hanleDownload} document={<MyDocument customerName={fullname}
+                            <PDFDownloadLink document={<MyDocument
+                                customerName={fullname}
                                 customerAddress={address}
                                 customerPhone={phone}
                                 productDetails={getSelectedProductDetails()}
@@ -272,11 +348,21 @@ function Quoationpage() {
                                 }
                             </PDFDownloadLink>
                         </div>
-
-
-
                     </>
                 )}
+
+                <div className="buttons-container">
+                    <button onClick={handleleSave} disabled={!formSubmitted} className="save-button">
+                        Save
+                    </button>
+                    <button
+                        onClick={handleDownload}
+                        disabled={pdfUrl === null}
+                        className="whatsapp-button">
+                        Send to WhatsApp
+                    </button>
+                </div>
+
             </div>
 
         </>

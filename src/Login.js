@@ -13,17 +13,6 @@ function LoginPage({setLoggedIn}) {
         e.preventDefault();
         setLoggedIn(username, password);
         history('/quotation');
-
-        // const uName = 'BajarangiAdmin';
-        // const pw = 'BajarangiAdmin@2024';
-        
-
-        // if (username == uName && password == pw) {
-
-        // }
-        // else{
-        //     alert('Login Unsuccessful');
-        // }
     }
 
     return (

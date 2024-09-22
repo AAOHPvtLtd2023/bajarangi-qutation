@@ -1,0 +1,27 @@
+.Main{
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    padding: 24px;
+    background-color: #171A1D;
+    height: 100vh;
+}
+.square{
+    width: 100%;
+    background-color: rgb(34, 39, 43);
+    /* align-self: center;
+    justify-self: center; */
+    padding: 30px;
+    border-radius: 20px;
+    height: fit-content;
+  }
+
+    /* Custom Table */
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      
